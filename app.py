@@ -13,9 +13,11 @@ def index():
 def test():
 	return 'This is a test button'
 
-class app():
-	def hello():
-		return 1234
+def hello():
+	return 1234
+#class app():
+	#def hello():
+		#return 1234
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0')
