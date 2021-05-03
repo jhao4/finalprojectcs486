@@ -15,9 +15,6 @@ def test():
 
 def hello():
 	return 1234
-#class app():
-	#def hello():
-		#return 1234
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0')
