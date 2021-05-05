@@ -47,8 +47,8 @@ def find_information(num, info):
 	response = requests.get(RICKMORTY_API + str(num), params=params)
 	return response.json()[info]
 
-def hello():
-	return 1234
+def add_test(a,b):
+	return a + b
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0')
