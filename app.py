@@ -1,5 +1,6 @@
 # https://stackoverflow.com/questions/29882642/how-to-run-a-flask-application
-# https://github.com/alexanderdamiani/test_repo_pylinter_v2/blob/main/.github/workflows/python-app.yml
+# https://pypi.org/project/pytest-bdd/
+
 from flask import Flask
 import random, requests
 
@@ -26,6 +27,11 @@ def info_layout(species, location, status):
 		status = '<h2>Unfortunately I\'m dead, more than likely cause of either Rick or Morty, or both of them</h2>'
 	return f'<h2>I\'m a {species} and was last seen on {location}</h2>' + status
 
+@app.route('/<id>')
+def find_id(id):
+	name, img, species, location, status = parse_information(id)
+	return page_layout(name, img, species, location, status)
+
 def parse_information(num):
 	params = {'format': 'json'}
 	response = requests.get(RICKMORTY_API + str(num), params=params)
@@ -36,10 +42,10 @@ def parse_information(num):
 	status = response.json()['status']
 	return name, img, species, location, status
 
-@app.route('/<id>')
-def find_id(id):
-	name, img, species, location, status = parse_information(id)
-	return page_layout(name, img, species, location, status)
+def find_information(num, info):
+	params = {'format': 'json'}
+	response = requests.get(RICKMORTY_API + str(num), params=params)
+	return response.json()[info]
 
 def hello():
 	return 1234
