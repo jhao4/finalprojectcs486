@@ -36,9 +36,10 @@ def parse_information(num):
 	status = response.json()['status']
 	return name, img, species, location, status
 
-@app.route('/<name>')
-def user(name):
-	return f"Hello {name}!!!"
+@app.route('/<id>')
+def find_id(id):
+	name, img, species, location, status = parse_information(id)
+	return page_layout(name, img, species, location, status)
 
 def hello():
 	return 1234
