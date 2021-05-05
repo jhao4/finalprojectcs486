@@ -10,13 +10,7 @@ RICKMORTY_API = 'https://rickandmortyapi.com/api/character/'
 @app.route('/')
 def index():
 	randomNum = random.randint(1,400)
-	params = {'format': 'json'}
-	response = requests.get(RICKMORTY_API + str(randomNum), params=params)
-	name = response.json()['name']
-	img = response.json()['image']
-	species = response.json()['species']
-	location = response.json()['location']['name']
-	status = response.json()['status']
+	name, img, species, location, status = parse_information(randomNum)
 	return page_layout(name, img, species, location, status)
 
 def page_layout(name, img, species, location, status):
@@ -32,6 +26,15 @@ def info_layout(species, location, status):
 		status = '<h2>Unfortunately I\'m dead, more than likely cause of either Rick or Morty, or both of them</h2>'
 	return f'<h2>I\'m a {species} and was last seen on {location}</h2>' + status
 
+def parse_information(num):
+	params = {'format': 'json'}
+	response = requests.get(RICKMORTY_API + str(num), params=params)
+	name = response.json()['name']
+	img = response.json()['image']
+	species = response.json()['species']
+	location = response.json()['location']['name']
+	status = response.json()['status']
+	return name, img, species, location, status
 
 @app.route('/<name>')
 def user(name):
