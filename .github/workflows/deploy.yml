@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+      
+name: Deploy
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Docker build
+      id: build-image
+      run: |
+        docker build -t cs486finalproject .
