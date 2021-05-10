@@ -50,7 +50,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: Update task definition
+    - name: Update development task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
@@ -58,7 +58,7 @@ jobs:
         container-name: dev-jhao4
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
+    - name: Deploy Amazon ECS development task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
@@ -88,3 +88,11 @@ jobs:
         task-definition: production-task-definition.json
         container-name: prod-jhao4
         image: ${{ steps.production-build-image.outputs.image }}
+
+    - name: Deploy Amazon ECS production task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.production-task-def.outputs.task-definition }}
+        service: prod-jhao4
+        cluster: prod-jhao4
+        wait-for-service-stability: true
