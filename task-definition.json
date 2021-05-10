@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::178027395537:role/usfca-cs-486-dev-demo-exec",
+  "executionRoleArn": "arn:aws:iam::178027395537:role/dev-jhao4-exec",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,9 +9,9 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "usfca-cs-486-dev-demo",
+          "awslogs-group": "dev-jhao4",
           "awslogs-region": "us-west-2",
-          "awslogs-stream-prefix": "demo"
+          "awslogs-stream-prefix": "jhao4"
         }
       },
       "entryPoint": null,
@@ -25,12 +25,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 256,
-      "environment": [
-        {
-          "name": "ENV",
-          "value": "dev"
-        }
-      ],
+      "environment": [],
       "resourceRequirements": null,
       "ulimits": [],
       "dnsServers": null,
@@ -42,7 +37,7 @@
       "memoryReservation": 128,
       "volumesFrom": [],
       "stopTimeout": 30,
-      "image": "178027395537.dkr.ecr.us-west-2.amazonaws.com/usfca-cs-486-dev-demo",
+      "image": "178027395537.dkr.ecr.us-west-2.amazonaws.com/dev-jhao4",
       "startTimeout": 30,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -59,18 +54,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "usfca-cs-486-dev-demo"
+      "name": "dev-jhao4"
     }
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::178027395537:role/usfca-cs-486-dev-demo-task",
+  "taskRoleArn": "arn:aws:iam::178027395537:role/dev-jhao4-task",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:178027395537:task-definition/usfca-cs-486-dev-demo:3",
-  "family": "usfca-cs-486-dev-demo",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:178027395537:task-definition/dev-jhao4:1",
+  "family": "dev-jhao4",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -139,7 +134,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 3,
+  "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
