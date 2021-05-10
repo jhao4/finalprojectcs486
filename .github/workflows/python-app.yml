@@ -65,3 +65,8 @@ jobs:
         service: dev-jhao4
         cluster: dev-jhao4
         wait-for-service-stability: true
+        
+    - name: Functional Tests
+      run: |
+        pytest test_rickmorty_characters.py
+      
