@@ -70,6 +70,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: usfca-cs-486-dev-demo
-        cluster: usfca-cs-486-dev-demo
+        service: dev-jhao4
+        cluster: dev-jhao4
         wait-for-service-stability: true
