@@ -39,7 +39,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
       
-    - name: Docker build and push
+    - name: Docker build and push to development
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -70,3 +70,13 @@ jobs:
       run: |
         pytest test_rickmorty_characters.py
       
+    - name: Docker build and push to production
+      id: production-build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-erc.outputs.registry }}
+        ECR_REPOSITORY: prod-jhao4
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY?$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
