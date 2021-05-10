@@ -43,7 +43,13 @@ jobs:
         aws-secret-access-key: lNJnVsT9qClFccJAmoec0BMe/UBLId3lH/VETPBN
         aws-region: us-west-2
       
-    - name: Docker build
+    - name: Docker build and push
       id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: dev-jhao4
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t cs486finalproject .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
