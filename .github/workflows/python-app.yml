@@ -92,7 +92,7 @@ jobs:
     - name: Deploy Amazon ECS production task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.production-task-def.outputs.task-definition }}
+        task-definition: ${{ steps.production-task-definition.outputs.task-definition }}
         service: prod-jhao4
         cluster: prod-jhao4
         wait-for-service-stability: true
