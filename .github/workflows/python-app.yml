@@ -1,4 +1,3 @@
-
 name: Run pytest and deploy
 
 on:
