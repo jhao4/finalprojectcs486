@@ -15,7 +15,7 @@ def index():
 	return page_layout(name, img, species, location, status)
 
 def page_layout(name, img, species, location, status):
-	return f'<h1>Hello my name is {name}<br>' + img_layout(img) + '<br>' + info_layout(species, location, status)
+	return f'<h1>Hello my name is {name}!<br>' + img_layout(img) + '<br>' + info_layout(species, location, status)
 
 def img_layout(img):
 	return f'<img src={img} width=\'500\' height=\'600\'>'
